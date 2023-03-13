@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_methods实现</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+-->
+
+
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        姓：<input type="text" v-model="fName"> <br>
+        名：<input type="text" v-model="lName"> <br>
+        全名：<span>{{fullName()}}</span>
+    </div>
+    <script type="text/javascript">
+        const v = new Vue({
+            el: '#root',
+            // 函數式簡化寫法
+            data() {
+                return {
+                    fName: '刘',
+                    lName: '亦非'
+                }
+            },
+            methods: {
+                fullName(){
+                    return this.fName + "-" + this.lName
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

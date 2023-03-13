@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el與data的兩種寫法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        el與data的兩種寫法：
+        1.el的兩種寫法：
+         （1）new Vue時候配置el屬性
+         （2）創建Vue實例，使用.$mount('#root')方式掛載容器
+        2.data的兩種寫法
+         （1）對象式
+         （2）函數式 組件必須使用函數式（不要使用箭頭函數）
+-->
+
+
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <h2>單向數據綁定：<input type="text" :value="name"></h2>
+        <h2>雙向數據綁定：<input type="text" v-model="name"></h2>
+    </div>
+    <script type="text/javascript">
+        const v = new Vue({
+            //el: '#root',
+            // data的對象式寫法
+            /* data: {
+                name: '尚硅谷',
+                url: 'https://www.baidu.com'
+            } */
+            // data的函數式寫法
+            /* data:function () {
+                return {
+                    name: '尚硅谷',
+                    url: 'https://www.baidu.com'
+                }
+            } */
+            // 函數式簡化寫法
+            data() {
+                return {
+                    name: '尚硅谷',
+                    url: 'https://www.baidu.com'
+                }
+            }
+        })
+        console.log(v)
+        v.$mount('#root');
+    </script>
+</body>
+
+</html>

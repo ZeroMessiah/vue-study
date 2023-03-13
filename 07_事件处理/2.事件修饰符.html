@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+
+        .prevent {
+            background-color: skyblue;
+        }
+
+        .demo {
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .box1 {
+            padding: 5px;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            padding: 5px;
+            background-color: orange;
+        }
+
+        .list {
+            width: 200px;
+            height: 200px;
+            background-color: peru;
+            overflow: auto ;
+        }
+
+        li {
+            height: 40px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        Vue中的事件修饰符：
+        1.prevent：阻止默认事件（常用）
+        2.stop：阻止事件冒泡（常用）
+        3.once：事件只触发一次（常用）
+        4.capture：使用事件的捕获模式
+        5.self：只有event.target是当前操作的元素时才触发事件
+        6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕 
+-->
+
+
+    <!-- 準備好一個容器 -->
+    <div id="root">
+        <div class="prevent">
+            <!-- 无prevent会跳转 -->
+            <a href="https://www.baidu.com" @click="showInfo">无prevent</a>
+            <br>
+            <a href="https://www.baidu.com" @click.prevent="showInfo">有prevent</a>
+        </div>
+        <div class="prevent" @click="click2($event, 99)">
+            <!-- 无stop会触发div的@click -->
+            <button @click="showInfo">无stop</button>
+            <br>
+            <button @click.stop="showInfo">有stop</button>
+        </div>
+        <div class="prevent">
+            <!-- 无once可以重复点击 -->
+            <button @click="showInfo">无once</button>
+            <br>
+            <button @click.once="showInfo">有once</button>
+        </div>
+        <div class="prevent" @click.capture="click2($event, 1)">
+            <!-- 无capture点击button会事件冒泡，2->1，有capture会1->2 -->
+            <br>
+            <button @click="click2($event, 2)">点我</button>
+        </div>
+        <div class="prevent" @click.self="showSelf">
+            <!-- 无self会触发事件冒泡，但此时的event还是button -->
+            <br>
+            <button @click="showSelf">点我</button>
+        </div>
+        <ul class="list" @scroll.passive="demo">
+            <!-- 无passive会先执行demo()方法 -->
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        const v = new Vue({
+            el: '#root',
+            // 函數式簡化寫法
+            data() {
+                return {
+                    name: '刘亦菲',
+                    sex: '女'
+                }
+            },
+            methods: {
+                showInfo() {
+                    alert("点我1")
+                },
+                click2(event, number) {
+                    alert(number)
+                },
+                showSelf(event) {
+                    console.log(event.target)
+                    alert(event.target)
+                },
+                demo() {
+                    console.log(1)
+                    alert(1)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

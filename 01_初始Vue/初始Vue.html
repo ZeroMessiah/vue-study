@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        初始Vue：
+            1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象
+            2root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法
+            3.root容器里的代码被称为【Vue模板】
+            4.容器和Vue實例一對一綁定
+     -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>Hello, {{per.name}}</h1>
+        <h1>年龄： {{per.age}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        //创建Vue实例
+        const x = new Vue({
+            el: '#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+            data: {
+                per: {
+                    name: "刘亦菲",
+                    age: 36
+                }
+            }
+        })
+    </script>
+</body>
+</html>
