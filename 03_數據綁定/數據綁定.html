@@ -14,13 +14,13 @@
 Vue數據綁定2種方式：
         1.單向綁定（v-bind）：數據只能從data流向頁面
         2.雙向綁定（v-model）：數據不僅能從data流向頁面，也能從頁面流向data
-            雙向綁定只能應用在含value屬性的元素上，所以v-model可以簡寫爲v-model
+            雙向綁定只能應用在含value屬性的元素上，所以v-model:value可以簡寫爲v-model
  -->
 
     <!-- 準備好一個容器 -->
     <div id="root">
         <h2>單向數據綁定：<input type="text" :value="name"></h2>
-        <h2>雙向數據綁定：<input type="text" v-model="name"></h2>
+        <h2>雙向數據綁定：<input type="text" v-model:value="name"></h2>
     </div>
     <script type="text/javascript">
         new Vue({
