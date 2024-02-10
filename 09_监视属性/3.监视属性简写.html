@@ -33,7 +33,7 @@
         <h2>今天天气很{{info}}</h2>
         <button @click="changeWeather">切换天气</button>
         <h2>a的值是{{numbers.a}}</h2>
-        <button @click="addA">点击a+1</button></button></button>
+        <button @click="addA">点击a+1</button>
         <h2>b的值是{{numbers.b}}</h2>
         <button @click="addB">点击b+1</button>
     </div>
@@ -72,18 +72,25 @@
                     console.log(this.numbers.a)
                 },
                 // 监视numbers变化
-                numbers: {
-                    deep: true,
-                    handler() {
-                        console.log(this.numbers)
-                    }
-                }
+                // numbers: {
+                //     deep: true,
+                //     handler() {
+                //         console.log(this.numbers)
+                //     }
+                // }
             }
         })
         v.$watch('isHot', function(newV, oldV) {
             setTimeout(() => {
                 console.log(this.isHot + ',' + newV + ',' + oldV)
             }, 1000);
+        })
+        v.$watch('numbers', function(newV, oldV) {
+            setTimeout(() => {
+                console.log(this.numbers)
+            }, 500);
+        }, {
+            deep: true
         })
     </script>
 </body>
