@@ -85,6 +85,7 @@
                 console.log(this.isHot + ',' + newV + ',' + oldV)
             }, 1000);
         })
+        // 监视numbers变化
         v.$watch('numbers', function(newV, oldV) {
             setTimeout(() => {
                 console.log(this.numbers)
